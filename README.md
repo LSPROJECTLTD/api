@@ -44,13 +44,6 @@ automated upgrades, so you have to do any updates manually.
 Read and edit `config/app.php` and setup the `'Datasources'` and any other
 configuration relevant for your application.
 
-## Layout
-
-The app skeleton uses a subset of [Foundation](http://foundation.zurb.com/) (v5) CSS
-framework by default. You can, however, replace it with any other library or
-custom styles.
-
-
 ## API
 Foi utilizada a documentação do CAKEPHP em https://cakephp.org/
 
@@ -59,4 +52,8 @@ Para proteger o seu projeto utilize o JWT ( virá pra esse projeto em versões f
 
 No Mais espero ter ajudado.
 Abraço a todos.
+
+## DB
+O sistema está preparado para receber uma tabela chamada users.
+Dentro de app.php você encontra as configurações do banco de dados.
 
