@@ -4,15 +4,12 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * User Entity
+ * Token Entity
  *
  * @property int $id
- * @property string $nome
- * @property string $password
- * @property int $idade
- * @property string $sexo
+ * @property string $token
  */
-class User extends Entity
+class Token extends Entity
 {
 
     /**
@@ -25,10 +22,7 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
-        'nome' => true,
-        'password' => true,
-        'idade' => true,
-        'sexo' => true
+        'token' => true
     ];
 
     /**
@@ -37,6 +31,6 @@ class User extends Entity
      * @var array
      */
     protected $_hidden = [
-        'password'
+        'token'
     ];
 }

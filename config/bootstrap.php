@@ -33,7 +33,6 @@ use Cake\Cache\Cache;
 use Cake\Console\ConsoleErrorHandler;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
-use Cake\Core\Plugin;
 use Cake\Database\Type;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\ErrorHandler;
@@ -41,9 +40,7 @@ use Cake\Http\ServerRequest;
 use Cake\Log\Log;
 use Cake\Mailer\Email;
 use Cake\Mailer\TransportFactory;
-use Cake\Utility\Inflector;
 use Cake\Utility\Security;
-
 /**
  * Uncomment block of code below if you want to use `.env` file during development.
  * You should copy `config/.env.default to `config/.env` and set/modify the
@@ -75,7 +72,6 @@ try {
 } catch (\Exception $e) {
     exit($e->getMessage() . "\n");
 }
-
 /*
  * Load an environment local configuration file.
  * You can use a file like app_local.php to provide local overrides to your

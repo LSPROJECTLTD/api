@@ -17,40 +17,93 @@ class UsersController extends AppController
     {
         parent::initialize();
         $this->loadComponent('RequestHandler');
+
+        $this->loadModel('Token');
+
     }
 
+    public function validatoken($token)
+    {
+        $this->loadModel('Token');
+        // Autenticação 1 pra 1
+        // $part = explode(".", $token);
+        // $header = $part[0];
+        // $payload = $part[1];
+        // $signature = $part[2];
+        // $valid = hash_hmac('sha256', "$header.$payload", 'minha-senha', true);
+        // $valid = base64_encode($valid);
+
+        // Autenticação 1 pra N
+        $tokens = $this->Token->find('all');
+        $valid = $token;
+        foreach ($tokens as $key => $token) {
+            if ($token['token'] == $valid) {
+                $validacao = true;
+                break;
+            } else {
+                $validacao = false;
+            }
+        }
+        return $validacao;
+    }
     public function index()
     {
-        $users = $this->Users->find('all');
-        $this->set([
-            'users' => $users,
-            '_serialize' => ['users'],
-        ]);
+        if ($token = $this->request->header('Authorization')) {
+            $token = $this->validatoken($token);
+        } else {
+            echo ' Não autorizado';exit;
+        }
+        if ($token) {
+            $users = $this->Users->find('all');
+            $this->set([
+                'users' => $users,
+                '_serialize' => ['users'],
+            ]);
+        } else {
+            echo 'Token Invalido';exit;
+        }
     }
 
     public function view($id)
     {
-        $user = $this->Users->get($id);
-        $this->set([
-            'user' => $user,
-            '_serialize' => ['user'],
-        ]);
+        if ($token = $this->request->header('Authorization')) {
+            $token = $this->validatoken($token);
+        } else {
+            echo ' Não autorizado';exit;
+        }
+        if ($token) {
+            $user = $this->Users->get($id);
+            $this->set([
+                'user' => $user,
+                '_serialize' => ['user'],
+            ]);
+        } else {
+            echo 'Token Invalido';exit;
+        }
     }
 
     public function add()
     {
-
-        $user = $this->Users->newEntity($this->request->getData());
-        if ($this->Users->save($user)) {
-            $message = 'Saved';
+        if ($token = $this->request->header('Authorization')) {
+            $token = $this->validatoken($token);
         } else {
-            $message = 'Error';
+            echo ' Não autorizado';exit;
         }
-        $this->set([
-            'message' => $message,
-            'user' => $user,
-            '_serialize' => ['message', 'user'],
-        ]);
+        if ($token) {
+            $user = $this->Users->newEntity($this->request->getData());
+            if ($this->Users->save($user)) {
+                $message = 'Saved';
+            } else {
+                $message = 'Error';
+            }
+            $this->set([
+                'message' => $message,
+                'user' => $user,
+                '_serialize' => ['message', 'user'],
+            ]);
+        } else {
+            echo 'Token Invalido';exit;
+        }
     }
 
     public function edit($id)

@@ -49,6 +49,7 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->setExtensions(['json']);
     $routes->resources('Users');
+    $routes->fallbacks('InflectedRoute');
 
     /**
      * Apply a middleware to the current route scope.

@@ -21,42 +21,42 @@ use Cake\Http\Exception\NotFoundException;
 
 $this->layout = false;
 
-if (!Configure::read('debug')) :
+if (!Configure::read('debug')):
     throw new NotFoundException(
         'Please replace src/Template/Pages/home.ctp with your own version or re-enable debug mode.'
     );
 endif;
 
-$cakeDescription = 'CakePHP: the rapid development PHP framework';
+$cakeDescription = 'CakePHP: API com Gerador de JWT';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <?= $this->Html->charset() ?>
+    <?=$this->Html->charset()?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>
+        <?=$cakeDescription?>
     </title>
 
-    <?= $this->Html->meta('icon') ?>
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('home.css') ?>
+    <?=$this->Html->meta('icon')?>
+    <?=$this->Html->css('base.css')?>
+    <?=$this->Html->css('style.css')?>
+    <?=$this->Html->css('home.css')?>
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
 </head>
 <body class="home">
 
 <header class="row">
-    <div class="header-image"><?= $this->Html->image('cake.logo.svg') ?></div>
+    <div class="header-image"><?=$this->Html->image('cake.logo.svg')?></div>
     <div class="header-title">
-        <h1>Welcome to CakePHP <?= Configure::version() ?> Red Velvet. Build fast. Grow solid.</h1>
+        <h1>Bem Vindo ao CakePHP API <?=Configure::version()?> Com gerador de JWT.</h1>
     </div>
 </header>
 
 <div class="row">
     <div class="columns large-12">
         <div class="ctp-warning alert text-center">
-            <p>Please be aware that this page will not be shown if you turn off debug mode unless you replace src/Template/Pages/home.ctp with your own version.</p>
+            <p>API criada de Cadastro de Usuarios e um gerador de JWT para autenticar.</p>
         </div>
         <div id="url-rewriting-warning" class="alert url-rewriting">
             <ul>
@@ -67,62 +67,82 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
                 </li>
             </ul>
         </div>
-        <?php Debugger::checkSecurityKeys(); ?>
+        <?php Debugger::checkSecurityKeys();?>
     </div>
 </div>
+<div class="row">
+<div class="columns large-6">
+        <h4>Dados da API</h4>
+        <li class="bullet success">Cadastro de Úsuarios utiliza apenas 3 campos.</li>
+        <li class="bullet success">API utiliza JSON como linguagem de transição.</li>
+        <li class="bullet success">É possivel aumentar a quantidade de campos na Tabela Usuarios, para facilitar o trabalho utilize o cake bake.</li>
+        <ul>
+</div>
 
+<div class="columns large-6">
+<h4>JWT</h4>
+<li class="bullet success">JWT Gerado seguindo os Padrões descritos no <a target="_blank" href="https://jwt.io/">Site Oficial </a></li>
+<li class="bullet success">Header utilizado nesse sistema é o <b>alg HS256</b> e <b>typ JWT</b>.</li>
+<li class="bullet success">O Token é transmitido via HEADER do http utilizando o Authorization</li>
+</div>
+</div>
+<div class="row">
+<hr>
+        <h4 class="text-center">Especificações do Framework</h4>
+        <br>
+</div>
 <div class="row">
     <div class="columns large-6">
         <h4>Environment</h4>
         <ul>
-        <?php if (version_compare(PHP_VERSION, '5.6.0', '>=')) : ?>
-            <li class="bullet success">Your version of PHP is 5.6.0 or higher (detected <?= PHP_VERSION ?>).</li>
-        <?php else : ?>
-            <li class="bullet problem">Your version of PHP is too low. You need PHP 5.6.0 or higher to use CakePHP (detected <?= PHP_VERSION ?>).</li>
-        <?php endif; ?>
+        <?php if (version_compare(PHP_VERSION, '5.6.0', '>=')): ?>
+            <li class="bullet success">Your version of PHP is 5.6.0 or higher (detected <?=PHP_VERSION?>).</li>
+        <?php else: ?>
+            <li class="bullet problem">Your version of PHP is too low. You need PHP 5.6.0 or higher to use CakePHP (detected <?=PHP_VERSION?>).</li>
+        <?php endif;?>
 
-        <?php if (extension_loaded('mbstring')) : ?>
+        <?php if (extension_loaded('mbstring')): ?>
             <li class="bullet success">Your version of PHP has the mbstring extension loaded.</li>
-        <?php else : ?>
+        <?php else: ?>
             <li class="bullet problem">Your version of PHP does NOT have the mbstring extension loaded.</li>
-        <?php endif; ?>
+        <?php endif;?>
 
-        <?php if (extension_loaded('openssl')) : ?>
+        <?php if (extension_loaded('openssl')): ?>
             <li class="bullet success">Your version of PHP has the openssl extension loaded.</li>
-        <?php elseif (extension_loaded('mcrypt')) : ?>
+        <?php elseif (extension_loaded('mcrypt')): ?>
             <li class="bullet success">Your version of PHP has the mcrypt extension loaded.</li>
-        <?php else : ?>
+        <?php else: ?>
             <li class="bullet problem">Your version of PHP does NOT have the openssl or mcrypt extension loaded.</li>
-        <?php endif; ?>
+        <?php endif;?>
 
-        <?php if (extension_loaded('intl')) : ?>
+        <?php if (extension_loaded('intl')): ?>
             <li class="bullet success">Your version of PHP has the intl extension loaded.</li>
-        <?php else : ?>
+        <?php else: ?>
             <li class="bullet problem">Your version of PHP does NOT have the intl extension loaded.</li>
-        <?php endif; ?>
+        <?php endif;?>
         </ul>
     </div>
     <div class="columns large-6">
         <h4>Filesystem</h4>
         <ul>
-        <?php if (is_writable(TMP)) : ?>
+        <?php if (is_writable(TMP)): ?>
             <li class="bullet success">Your tmp directory is writable.</li>
-        <?php else : ?>
+        <?php else: ?>
             <li class="bullet problem">Your tmp directory is NOT writable.</li>
-        <?php endif; ?>
+        <?php endif;?>
 
-        <?php if (is_writable(LOGS)) : ?>
+        <?php if (is_writable(LOGS)): ?>
             <li class="bullet success">Your logs directory is writable.</li>
-        <?php else : ?>
+        <?php else: ?>
             <li class="bullet problem">Your logs directory is NOT writable.</li>
-        <?php endif; ?>
+        <?php endif;?>
 
-        <?php $settings = Cache::getConfig('_cake_core_'); ?>
-        <?php if (!empty($settings)) : ?>
-            <li class="bullet success">The <em><?= $settings['className'] ?>Engine</em> is being used for core caching. To change the config edit config/app.php</li>
-        <?php else : ?>
+        <?php $settings = Cache::getConfig('_cake_core_');?>
+        <?php if (!empty($settings)): ?>
+            <li class="bullet success">The <em><?=$settings['className']?>Engine</em> is being used for core caching. To change the config edit config/app.php</li>
+        <?php else: ?>
             <li class="bullet problem">Your cache is NOT working. Please check the settings in config/app.php</li>
-        <?php endif; ?>
+        <?php endif;?>
         </ul>
     </div>
     <hr />
@@ -132,36 +152,36 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <div class="columns large-6">
         <h4>Database</h4>
         <?php
-        try {
-            $connection = ConnectionManager::get('default');
-            $connected = $connection->connect();
-        } catch (Exception $connectionError) {
-            $connected = false;
-            $errorMsg = $connectionError->getMessage();
-            if (method_exists($connectionError, 'getAttributes')) :
-                $attributes = $connectionError->getAttributes();
-                if (isset($errorMsg['message'])) :
-                    $errorMsg .= '<br />' . $attributes['message'];
-                endif;
-            endif;
-        }
-        ?>
+try {
+    $connection = ConnectionManager::get('default');
+    $connected = $connection->connect();
+} catch (Exception $connectionError) {
+    $connected = false;
+    $errorMsg = $connectionError->getMessage();
+    if (method_exists($connectionError, 'getAttributes')):
+        $attributes = $connectionError->getAttributes();
+        if (isset($errorMsg['message'])):
+            $errorMsg .= '<br />' . $attributes['message'];
+        endif;
+    endif;
+}
+?>
         <ul>
-        <?php if ($connected) : ?>
+        <?php if ($connected): ?>
             <li class="bullet success">CakePHP is able to connect to the database.</li>
-        <?php else : ?>
-            <li class="bullet problem">CakePHP is NOT able to connect to the database.<br /><?= $errorMsg ?></li>
-        <?php endif; ?>
+        <?php else: ?>
+            <li class="bullet problem">CakePHP is NOT able to connect to the database.<br /><?=$errorMsg?></li>
+        <?php endif;?>
         </ul>
     </div>
     <div class="columns large-6">
         <h4>DebugKit</h4>
         <ul>
-        <?php if (Plugin::loaded('DebugKit')) : ?>
+        <?php if (Plugin::loaded('DebugKit')): ?>
             <li class="bullet success">DebugKit is loaded.</li>
-        <?php else : ?>
+        <?php else: ?>
             <li class="bullet problem">DebugKit is NOT loaded. You need to either install pdo_sqlite, or define the "debug_kit" connection name.</li>
-        <?php endif; ?>
+        <?php endif;?>
         </ul>
     </div>
     <hr />
